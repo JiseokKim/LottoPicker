@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">LottoPicker</string>
+    <string name="lotto_ball_description">로또복권의 공 그림</string>
+</resources>
