@@ -26,7 +26,7 @@ public class RandomPicker {
         Iterator<Integer> iterator = lottoNumberSet.iterator();
         while (iterator.hasNext()){
           lottoNumberList[i] = iterator.next();
-          Log.d("Random List", ""+i+": "+lottoNumberList[i]);
+          //Log.d("Random List", ""+i+": "+lottoNumberList[i]);
           i++;
         }
 
