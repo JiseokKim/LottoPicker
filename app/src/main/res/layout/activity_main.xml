@@ -2,30 +2,64 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rootLayout"
     tools:context=".MainActivity">
+
     <LinearLayout
+        android:id="@+id/topLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/topLayout">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <TextView
+            android:id="@+id/mainTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title"
-            android:textStyle="italic|bold"
-            android:textSize="25sp"/>
+            android:textSize="25sp"
+            android:textStyle="italic|bold" />
+
+        <LinearLayout
+            android:id="@+id/gameListSpinnerLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginStart="48dp"
+            app:layout_constraintEnd_toEndOf="@id/topLayout">
+
+            <TextView
+                android:id="@+id/gameListSpinnerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/game_time_text"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@id/gameListSpinner" />
+
+            <kim.com.test.lottopicker.LottoGameTimesSpinner
+                android:id="@+id/gameListSpinner"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                app:layout_constraintEnd_toEndOf="@id/gameListSpinnerLayout"
+                app:layout_constraintTop_toTopOf="@id/gameListSpinnerLayout"
+                tools:listitem="@layout/support_simple_spinner_dropdown_item" />
+        </LinearLayout>
     </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/lottoListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/lottoListView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topLayout"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topLayout" />
 
 </android.support.constraint.ConstraintLayout>

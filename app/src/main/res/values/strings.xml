@@ -2,4 +2,12 @@
     <string name="app_name">LottoPicker</string>
     <string name="lotto_ball_description">로또복권의 공 그림</string>
     <string name="title">Lotto 6/45</string>
+    <string name="game_time_text">게임횟수</string>
+    <string-array name="game_time_array">
+        <item>1회</item>
+        <item>2회</item>
+        <item>3회</item>
+        <item>4회</item>
+        <item>5회</item>
+    </string-array>
 </resources>

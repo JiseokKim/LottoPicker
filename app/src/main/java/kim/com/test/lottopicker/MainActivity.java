@@ -3,14 +3,14 @@ package kim.com.test.lottopicker;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.LinearLayout;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
+import kim.com.test.lottopicker.lottoview.LottoViewAdapter;
 
 public class MainActivity extends AppCompatActivity {
     loopThread loop;
@@ -36,6 +36,27 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
         Log.d("recyclerview width","width: "+mRecyclerView.getMeasuredWidth());
         Log.d("recyclerview height","height: "+mRecyclerView.getMeasuredHeight());
+        LottoGameTimesSpinner lottoGameTimesSpinner = findViewById(R.id.gameListSpinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
+                R.array.game_time_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        lottoGameTimesSpinner.setAdapter(spinnerAdapter);
+        lottoGameTimesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                mAdapter.setItemCount(adapterView.getSelectedItemPosition()+1);
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+        });
     }
 
     @Override

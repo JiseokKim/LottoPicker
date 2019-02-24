@@ -1,7 +1,8 @@
-package kim.com.test.lottopicker;
+package kim.com.test.lottopicker.lottoview;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -14,15 +15,19 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import kim.com.test.lottopicker.R;
+
 /*
 *  Lotto Ball View
 * */
 public class LottoBallView extends FrameLayout {
+    final String tag= "LottoBallView";
     int color;
     Resources resources;
     ImageView ballImageView;
     TextView lottoTextView;
     FrameLayout frameLayout;
+    int viewIndex = 0;
     public LottoBallView(Context context) {
         super(context);
         initializeView(context);
@@ -44,12 +49,12 @@ public class LottoBallView extends FrameLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height =  MeasureSpec.getSize(heightMeasureSpec);
-//        int viewSize;
-//        if(width>height||width==height){
-//            viewSize = width;
-//        }else{
-//            viewSize = height;
-//        }
+        int viewSize;
+        if(width>height||width==height){
+            viewSize = width;
+        }else{
+            viewSize = height;
+        }
         setMeasuredDimension(width, height);
 //        frameLayout.setMinimumWidth(width);
 //        frameLayout.setMinimumHeight(width);
@@ -57,31 +62,35 @@ public class LottoBallView extends FrameLayout {
 //        ballImageView.setMinimumHeight(height);
 //        lottoTextView.setMinimumWidth(width/2);
 //        lottoTextView.setMinimumHeight(width/2);
-        Log.d("View MeasureWidth", "Width:"+ getMeasuredWidth());
-        Log.d("View MeasureHeight", "Height:"+ getMeasuredHeight());
-        Log.d("View MeasureWidth", "ImageView Width:"+ ballImageView.getMeasuredWidth());
-        Log.d("View MeasureHeight", "ImageView Height:"+ ballImageView.getMeasuredHeight());
-        Log.d("View MeasureWidth", "TextView Width:"+ lottoTextView.getMeasuredWidth());
-        Log.d("View MeasureHeight", "TextView Height:"+ lottoTextView.getMeasuredHeight());
+        Log.d(tag, "MeasureWidth:"+ getMeasuredWidth());
+        Log.d(tag, "MeasureHeight:"+ getMeasuredHeight());
+        Log.d(tag, "ImageView MeasureWidth:"+ ballImageView.getMeasuredWidth());
+        Log.d(tag, "ImageView MeasureHeight:"+ ballImageView.getMeasuredHeight());
+        Log.d(tag, "TextView MeasureWidth:"+ lottoTextView.getMeasuredWidth());
+        Log.d(tag, "TextView MeasureHeight:"+ lottoTextView.getMeasuredHeight());
     }
 
 
     private void initializeView(Context context){
         LayoutInflater inflater =(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.lotto_ball_view,this, true);
-//        frameLayout = (FrameLayout) inflater.inflate(R.layout.lotto_ball_view,this, false);
-//        frameLayout = (FrameLayout) this.findViewById(R.id.lottoBallFrameLayout);
+        //frameLayout = (FrameLayout) inflater.inflate(R.layout.lotto_ball_view,this, false);
+        //frameLayout = this.findViewById(R.id.lottoBallFrameLayout);
         resources = getResources();
         color = resources.getColor(R.color.white);
-        ballImageView = findViewById(R.id.ballView);//first layer
+        ballImageView = this.findViewById(R.id.ballView);//first layer
         ballImageView.setImageResource(R.drawable.ic_lotto_ball_24dp);//android:src 적용
 //        ballImageView.setVisibility(INVISIBLE);
-        lottoTextView = findViewById(R.id.numberView);//second layer
+        lottoTextView = this.findViewById(R.id.numberView);//second layer
         lottoTextView.setText("0");
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(205,205 );
+        ballImageView.setLayoutParams(layoutParams);
+        //lottoTextView.setLayoutParams(layoutParams);
     }
     public void setLottoText(int lottoNumber){
         lottoTextView.setText(String.valueOf(lottoNumber));
         setBallImageColor(lottoNumber);
+        this.setBackgroundColor(Color.MAGENTA);
     }
     /*
      * 로또 번호 범위구간에 따른 볼 이미지의 색상은 다음과 같다.
