@@ -13,8 +13,8 @@ import android.widget.Spinner;
 import kim.com.test.lottopicker.lottoview.LottoViewAdapter;
 
 public class MainActivity extends AppCompatActivity {
-    loopThread loop;
-    ConstraintLayout rootLayout;
+//    loopThread loop;
+//    ConstraintLayout rootLayout;
 //    LinearLayout parentLayout;
 //    List<LinearLayout> parentLayoutList = new ArrayList();
 //    List<LottoBallView> lottoViewList = new ArrayList();
@@ -26,16 +26,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 //        rootLayout = new ConstraintLayout(this);
 //        rootLayout.setId(R.id.rootLayout);
-        loop = new loopThread();
+//        loop = new loopThread();
 //        loop.start();
         mRecyclerView = findViewById(R.id.lottoListView);
-        mRecyclerView.setHasFixedSize(true);
+//        mRecyclerView.setHasFixedSize(true);
 
 
         mAdapter = new LottoViewAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
-        Log.d("recyclerview width","width: "+mRecyclerView.getMeasuredWidth());
-        Log.d("recyclerview height","height: "+mRecyclerView.getMeasuredHeight());
+
         LottoGameTimesSpinner lottoGameTimesSpinner = findViewById(R.id.gameListSpinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
@@ -49,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 mAdapter.setItemCount(adapterView.getSelectedItemPosition()+1);
                 mAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -82,20 +82,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(loop != null){
-            loop.threadWork = false;
-            loop.interrupt();
-        }
+//        if(loop != null){
+//            loop.threadWork = false;
+//            loop.interrupt();
+//        }
 
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-//        if(hasFocus){
-//            Log.d("recyclerview width","width: "+mRecyclerView.getMeasuredWidth());
-//            Log.d("recyclerview height","height: "+mRecyclerView.getMeasuredHeight());
-//        }
+        if(hasFocus){
+            Log.d("recyclerview width","width: "+mRecyclerView.getMeasuredWidth());
+            Log.d("recyclerview height","height: "+mRecyclerView.getMeasuredHeight());
+        }
     }
 
 
