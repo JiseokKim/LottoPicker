@@ -6,7 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+    <!--툴바 -->
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/toolBar"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <!-- 상단배너-->
     <LinearLayout
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
@@ -14,7 +23,8 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/toolBar"
+        app:layout_constraintBottom_toTopOf="@id/lottoListView">
 
         <TextView
             android:id="@+id/mainTitle"
@@ -23,7 +33,7 @@
             android:text="@string/title"
             android:textSize="25sp"
             android:textStyle="italic|bold" />
-
+<!--
         <LinearLayout
             android:id="@+id/gameListSpinnerLayout"
             android:layout_width="wrap_content"
@@ -49,9 +59,9 @@
                 app:layout_constraintEnd_toEndOf="@id/gameListSpinnerLayout"
                 app:layout_constraintTop_toTopOf="@id/gameListSpinnerLayout"
                 tools:listitem="@layout/support_simple_spinner_dropdown_item" />
-        </LinearLayout>
+        </LinearLayout>-->
     </LinearLayout>
-
+    <!--로또 당첨숫자 화면-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/lottoListView"
         android:layout_width="match_parent"

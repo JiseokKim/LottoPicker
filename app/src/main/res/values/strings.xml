@@ -3,6 +3,11 @@
     <string name="lotto_ball_description">로또복권의 공 그림</string>
     <string name="title">Lotto 6/45</string>
     <string name="game_time_text">게임횟수</string>
+    <string name="new_game_input_text">구매할 게임 갯수를 입력해주세요 \n1인당 구매가능한 게임 갯수는 최대 100개 입니다.</string>
+    <string name="new_game_start_text">새게임 시작</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_new_game_dialog">새 게임</string>
     <string-array name="game_time_array">
         <item>1회</item>
         <item>2회</item>

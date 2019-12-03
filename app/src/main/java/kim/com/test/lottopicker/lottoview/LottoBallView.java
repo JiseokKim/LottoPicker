@@ -98,6 +98,11 @@ public class LottoBallView extends RelativeLayout {
         setBallImageColor(lottoNumber);
         //this.setBackgroundColor(Color.MAGENTA);
     }
+    public void setGameNumberText(int gameNumber){
+        lottoTextView.setText(String.valueOf(gameNumber)+"회");
+        //setBallImageColor(lottoNumber);
+        //this.setBackgroundColor(Color.MAGENTA);
+    }
     /*
      * 로또 번호 범위구간에 따른 볼 이미지의 색상은 다음과 같다.
      * 1~10 : Yellow
@@ -105,21 +110,23 @@ public class LottoBallView extends RelativeLayout {
      * 21~30: Red
      * 31~40: Gray
      * 41~45: Green
+     * (X-1)/10
      * */
     private void setBallImageColor(int lottoNumber){
-        if(lottoNumber>=1&&lottoNumber<=10){
+        int colorNumber = (lottoNumber-1)/10;
+        if(colorNumber == 0){
             //Yellow
             color = resources.getColor(R.color.yellow);
-        }else if(lottoNumber>=11&&lottoNumber<=20){
+        }else if(colorNumber==1){
             //Blue
             color = resources.getColor(R.color.blue);
-        }else if(lottoNumber>=21&&lottoNumber<=30){
+        }else if(colorNumber==2){
             //Red
             color = resources.getColor(R.color.red);
-        }else if(lottoNumber>=31&&lottoNumber<=40){
+        }else if(colorNumber==3){
             //Gray
             color = resources.getColor(R.color.gray);
-        }else if(lottoNumber>40&&lottoNumber<46) {
+        }else if(colorNumber==4) {
             //Green
             color = resources.getColor(R.color.green);
         }else{
